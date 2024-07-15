@@ -1,0 +1,254 @@
+import test from '../src/lib/BaseTest'
+import ENV from "../src/lib/env"
+import { afterEachHooks } from 'gafone';
+test.beforeEach(async ({page}) =>{
+  await page.goto(ENV.COST_ESTIMATE_QUIZ_URL);
+});
+
+test('Test Cost Estimate Quiz page Title Check,@TR-16353, @CostEstQuizTitle,@Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await test.expect(page).toHaveTitle('Cost Estimate Quiz Page');
+});
+test('Test Cost Estimate Quiz page Question progress bar display and address feild, Back and Next button display display check,@TR-16354, @CostEstQuizAddFieldDisplay, @Regression', async ({costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  test.expect(await costEstimateQuizPage.quizProgressBar.isVisible()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.address.isVisible()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.backButton.isHidden()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.nextButton.isVisible()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeFalsy();
+});
+test('Test Cost Estimate Quiz page Address Error message display,@TR-16355, @CostEstQuizAddError,@Regression', async ({costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("  ");
+  test.expect(await costEstimateQuizPage.addressErrorMessage.isVisible()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeFalsy();
+});
+test('Test Cost Estimate Quiz Page 2nd page validation,@TR-16356, @CostEstQuiz2ndPageValidation,@Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeFalsy();
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+});
+test('Test Cost Estimate Quiz Page 3rd page validation,@TR-16357, @CostEstQuiz3rdPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  
+});
+test('Test Cost Estimate Quiz Page 4th page validation,@TR-16357, @CostEstQuiz4thPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+
+});
+test('Test Cost Estimate Quiz Page 5th page validation,@TR-16357, @CostEstQuiz5thPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofSlopeValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+});
+test('Test Cost Estimate Quiz Page 6th page validation,@TR-16357, @CostEstQuiz6thPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofSlopeValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofComplexityValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+});
+test('Test Cost Estimate Quiz Page 7th page validation,@TR-16357, @CostEstQuiz7thPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofSlopeValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofComplexityValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.chosenContractorRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+});
+test('Test Cost Estimate Quiz Page Last page validation,@TR-16357, @CostEstQuizLastPageValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofSlopeValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofComplexityValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.chosenContractorRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  test.expect(await costEstimateQuizPage.getResultsButton.isEnabled()).toBeFalsy();
+  await costEstimateQuizPage.firstNameInput.fill("GAF");
+  await costEstimateQuizPage.lastNameInput.fill("lastnmae");
+  await costEstimateQuizPage.emailInput.fill("gaflastnmae@gaf.com");
+  test.expect(await costEstimateQuizPage.disclaimer.isVisible()).toBeTruthy();
+  test.expect(await costEstimateQuizPage.disclaimerCheckBox.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.disclaimerCheckBox.click();
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.getResultsButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.getResultsButton.click();
+});
+test('Test Cost Estimate Quiz Page Last  page errors validation,@TR-16357, @CostEstQuizLastPageErrorsValidation, @Regression', async ({page,costEstimateQuizPage }) => {
+  await costEstimateQuizPage.quizProgressBar.waitFor({state:"visible"});
+  await costEstimateQuizPage.address.type("U",{delay:1000});
+  await page.waitForTimeout(2000);
+  await page.reload();
+  await costEstimateQuizPage.address.type("Ai",{delay:1000});
+  await page.keyboard.press("ArrowDown+Enter");
+  await page.waitForTimeout(2000);
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await page.waitForTimeout(1000);
+  await costEstimateQuizPage.squareFootage.fill("1000");
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.numberOfStoriesRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.garageValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofSlopeValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.roofComplexityValueRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  await costEstimateQuizPage.chosenContractorRadioButton.first().click();
+  test.expect(await costEstimateQuizPage.nextButton.isEnabled()).toBeTruthy();
+  await costEstimateQuizPage.nextButton.click();
+  test.expect(await costEstimateQuizPage.getResultsButton.isEnabled()).toBeFalsy();
+  await costEstimateQuizPage.firstNameInput.fill(" ");
+  test.expect(await costEstimateQuizPage.errorMessageAtFinalPage.nth(0).isVisible()).toBeTruthy();
+  await costEstimateQuizPage.firstNameInput.fill("FirstName");
+  await costEstimateQuizPage.lastNameInput.fill(" ");
+  test.expect(await costEstimateQuizPage.errorMessageAtFinalPage.nth(1).isVisible()).toBeTruthy();
+  await costEstimateQuizPage.lastNameInput.fill("lastnmae");
+  await costEstimateQuizPage.emailInput.fill(" ");
+  test.expect(await costEstimateQuizPage.errorMessageAtFinalPage.nth(2).isVisible()).toBeTruthy();  
+});
+test.afterEach(async ({ page }, testInfo) => {
+  const scenarioDescription = testInfo.title;
+  const testStatus = testInfo.status;
+  const duration = testInfo.duration;
+  const failureMessage = testInfo.error?.message ?? '';
+  await afterEachHooks({
+    scenarioDescription,
+    testStatus,
+    duration,
+    failureMessage
+  })
+});

@@ -1,0 +1,117 @@
+import { Locator, Page, BrowserContext } from '@playwright/test';
+
+export class HomePage {
+    //create objects
+    readonly page: Page;
+    readonly context: BrowserContext;
+    readonly facebookIcon: Locator;
+    readonly linkedInIcon: Locator;
+    readonly twitterIcon:  Locator;
+    readonly instagramIcon: Locator;
+    readonly youTubeIcon:  Locator;
+    readonly logoAtFooterLevel: Locator;
+    readonly logoAtHeaderLevel: Locator;
+    readonly footerCopyWrightLabel: Locator;
+    readonly footerHeadingTheCompanyHeading: Locator;
+    readonly footerHeadingWorkWithUsHeading: Locator;
+    readonly footerHeadingQuickLinksHeading: Locator;
+    readonly footerHeadingRelatedBusinessHeading: Locator;
+    readonly aboutGafSubLink: Locator;
+    readonly historySubLink: Locator;
+    readonly innovationSubLink: Locator;
+    readonly leadershipSubLink: Locator;
+    readonly standardIndustriesSubLink: Locator;
+    readonly sustainabilitySubLink: Locator;
+    readonly careersAtGafSubLink: Locator;
+    readonly ourCultureSubLink: Locator;
+    readonly searchJobsSubLink: Locator;
+    readonly studentsAndEarlyCareersSubLink: Locator;
+    readonly blogSubLink: Locator;
+    readonly contactUsSubLink: Locator;
+    readonly newsAndPressReleasesSubLink: Locator;
+    readonly siplastUsSubLink: Locator;
+    readonly standardLogisticsSubLink: Locator;
+    readonly roofingMaterialsTab: Locator;
+    readonly buildingMaterialsAndOwnersTab: Locator;
+    readonly planAndDesignTab: Locator;
+    readonly forProsTab: Locator;
+    readonly resourcesTab: Locator;
+    readonly findAContractor: Locator;
+    readonly relatedResourcesSection: Locator;
+    readonly partnerPortalLoginLink: Locator;
+    readonly documentsLink: Locator;
+    readonly findADistributorLink: Locator;
+    readonly findARepLink: Locator;
+    readonly disclaimerRed:Locator;
+    readonly disclaimerWhite:Locator;
+    readonly disclaimer:Locator;
+    readonly disclaimerRedInSideLink:Locator;
+    readonly disclaimerWhiteInSideLink:Locator;
+    readonly disclaimerInSideLink:Locator;
+    readonly alertBannerHeadLine: Locator;
+    readonly mashheadContent: Locator;
+    readonly MasonryGalleryContent: Locator;
+    readonly cardOverlay: Locator;
+    readonly cardRow: Locator;
+    readonly utilityNavigationMenu: Locator;
+    readonly findContractorButton: Locator;
+       //locate elements
+    constructor(page: Page, context: BrowserContext) {
+        this.page = page;
+        this.context = context;
+        this.facebookIcon = page.locator("(//a[@aria-label='Facebook'])[1]");
+        this.linkedInIcon = page.locator("(//a[@aria-label='LinkedIn'])[1]");
+        this.twitterIcon = page.locator("(//a[@aria-label='Twitter'])[1]");
+        this.instagramIcon = page.locator("(//a[@aria-label='Instagram'])[1]");
+        this.youTubeIcon = page.locator("(//img[@alt='Youtube'])[1]");
+        this.logoAtFooterLevel=page.locator("//img[@alt='GAF Logo']");
+        this.logoAtHeaderLevel=page.locator("//div[@class='header__logo-wrapper']//*[local-name()='svg'][2]");
+        this.footerCopyWrightLabel=page.locator(".footer__legal ul +div");
+        this.footerHeadingTheCompanyHeading=page.locator(".footer__navigation div:nth-child(1) span");
+        this.footerHeadingWorkWithUsHeading=page.locator(".footer__navigation div:nth-child(2) span");
+        this.footerHeadingQuickLinksHeading=page.locator(".footer__navigation div:nth-child(3) span");
+        this.footerHeadingRelatedBusinessHeading=page.locator(".footer__navigation div:nth-child(4) span");
+        this.aboutGafSubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(1) a");
+        this.historySubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(2) a");
+        this.innovationSubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(3) a");
+        this.leadershipSubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(4) a");
+        this.standardIndustriesSubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(5) a");
+        this.sustainabilitySubLink=page.locator(".footer__navigation div:nth-child(1) ul li:nth-child(6) a");
+        this.careersAtGafSubLink=page.locator(".footer__navigation div:nth-child(2) ul li:nth-child(1) a");
+        this.ourCultureSubLink=page.locator(".footer__navigation div:nth-child(2) ul li:nth-child(2) a");
+        this.searchJobsSubLink=page.locator(".footer__navigation div:nth-child(2) ul li:nth-child(3) a");
+        this.studentsAndEarlyCareersSubLink=page.locator(".footer__navigation div:nth-child(2) ul li:nth-child(4) a");
+        this.blogSubLink=page.locator(".footer__navigation div:nth-child(3) ul li:nth-child(1) a");
+        this.contactUsSubLink=page.locator(".footer__navigation div:nth-child(3) ul li:nth-child(2) a");
+        this.newsAndPressReleasesSubLink=page.locator(".footer__navigation div:nth-child(3) ul li:nth-child(3) a");
+        this.siplastUsSubLink=page.locator(".footer__navigation div:nth-child(4) ul li:nth-child(1) a");
+        this.standardLogisticsSubLink=page.locator(".footer__navigation div:nth-child(4) ul li:nth-child(2) a");
+        this.roofingMaterialsTab=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[1]");
+        this.buildingMaterialsAndOwnersTab=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[2]");
+        this.planAndDesignTab=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[3]");
+        this.forProsTab=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]");
+        this.resourcesTab=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[5]");
+        this.findAContractor=page.locator("//a[contains(text(),'Find a Contractor')]");
+        this.relatedResourcesSection=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]/parent::li//p[text()='Related Resources']");
+        this.partnerPortalLoginLink=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]/parent::li//span[text()='Partner Portal Login']");
+        this.documentsLink=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]/parent::li//span[text()='Documents']");
+        this.findADistributorLink=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]/parent::li//span[text()='Find a Distributor ']");
+        this.findARepLink=page.locator("((//ul[@class='header__primary-nav'])[1]/li[@class='header__primary-list']/button)[4]/parent::li//span[text()='Find a Rep']");
+        this.disclaimerRed=page.locator("//section[contains(@class,'disclaimer--red')]");
+        this.disclaimerWhite=page.locator("//section[contains(@class,'disclaimer--white')]");
+        this.disclaimer=page.locator("(//section[contains(@class,'disclaimer')])[3]");
+        this.disclaimerRedInSideLink=page.locator("//section[contains(@class,'disclaimer--red')]//a");
+        this.disclaimerWhiteInSideLink=page.locator("//section[contains(@class,'disclaimer--white')]//a");
+        this.disclaimerInSideLink=page.locator("(//section[contains(@class,'disclaimer')])[3]//a");
+        this.alertBannerHeadLine=page.locator("(//div[contains(@class,'alert-banner__container')])[1]/h2");
+        this.mashheadContent=page.locator("//div[@class='homepage-masthead__content']//ul//a");
+        this.MasonryGalleryContent=page.locator("//article[@class='masonry-block masonry-block--small']");
+        this.cardOverlay= page.locator("//a[contains(@class,'btn btn--secondary card-content')]");
+        this.cardRow=page.locator("//a[contains(@class,'link link--arrow card')]");
+        this.utilityNavigationMenu=page.locator(".header__utility-menu");
+        this.findAContractor=page.getByText("Find a contractor");
+    }
+    
+
+
+}
